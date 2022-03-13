@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Assignment 1
 Route::group(['namespace'=>'Admin','as'=>'user.','middleware'=>'test'],function(){
     Route::get('/user/{name}',[UserController::class,'show'])->name('show');
 });
@@ -26,3 +29,15 @@ Route::group(['namespace'=>'Admin','as'=>'user.','middleware'=>'test'],function(
 Route::group(['prefix'=>'product'],function(){
     Route::resource('category',CategoryController::class);
 });
+
+//Assignment 2
+Route::resources([
+    'post'=>PostController::class,
+    'product'=>ProductController::class
+]);
+
+
+
+
+
+
